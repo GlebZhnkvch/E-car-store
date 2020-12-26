@@ -1,0 +1,132 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>
+        {% block title %}
+            E-car
+        {% endblock %}
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="img/x-icon">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+{% include 'header.html' %}
+<!-- Page Content -->
+{% block ads %}
+    <div class="container pt-1">
+
+
+        <!-- Heading Row -->
+        <div class="row align-items-center my-5">
+            <div class="col-lg-6">
+                <img class="img-fluid rounded mb-lg-0" src="{% static 'img/2.png' %}" alt="">
+            </div>
+            <!-- /.col-lg-8 -->
+            {% block app %}
+                <div class="col-lg-6 mb-5 text-center">
+                    <h1 class="main-text">Продай свой электромобиль выгодно и безопасно!</h1>
+                    {% if user.is_authenticated %}
+                        <a class="btn create-ad" href="/ads/create">Подать объявление</a>
+                    {% else %}
+                        <a class="btn create-ad" href="/login">Подать объявление</a>
+                    {% endif %}
+                </div>
+            {% endblock %}
+        </div>
+        <!-- /.row -->
+        {% block about %}
+            <!-- Call to Action Well -->
+            <div class="my-1 text-center new-ad">
+                <div class="card-body">
+                    <p class="m-0">Новые предложения</p>
+                </div>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+                {% for ad in page.object_list %}
+                    <div class="col-md-4 mb-5">
+                        <a href="/ads/{{ ad.id }}">
+                            <div class="card h-100" style="width: 20rem;">
+                                <img class="card-img-top car-pic" src="{{ ad.image.url }}" alt="Card image cap">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="mt-auto">
+                                        <h5 class="card-title">{{ ad.brand }} {{ ad.car_model }}</h5>
+                                        <p class="card-year">{{ ad.year }}г. | {{ ad.mileage }}км.</p>
+                                        <p class="card-price">${{ ad.price|intcomma }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+    {% block about_bt %}
+        <div class="row mt-2 w-100">
+            <div class="col-12 mb-5 text-center">
+                <a class="btn create-ad" href="/ads">Ещё</a>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-3">
+    <div class="container d-flex flex-column-reverse flex-lg-row justify-content-between">
+        <ul class="d-inline-block pl-0 flex-column copyright mt-3 text-center text-lg-left">
+            <li class="d-block mt-2" style="font-size: 16px;">Первая онлайн-площадка объявлений электромобилей в РБ.</li>
+            <li class="d-block" style="font-size: 16px;">&copy; E-car Все права защищены</li>
+        </ul>
+
+        <ul class="d-inline-block flex-row justify-content-center mt-3 mr-5 text-center social">
+            <li class="d-inline-block p-2">
+                <a href="#"><img src="{% static 'img/f.svg' %}" alt="telegram"></a>
+            </li>
+            <li class="d-inline-block p-2">
+                <a href="#"><img src="{% static 'img/inst.svg' %}" alt="instagram"></a>
+            </li>
+            <li class="d-inline-block p-2">
+                <a href="#"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.container -->
+</footer>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
