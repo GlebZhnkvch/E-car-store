@@ -60,7 +60,9 @@ ROOT_URLCONF = 'car_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates',
+                 'ads/templates',
+                 'users/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

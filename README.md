@@ -14,6 +14,6 @@ _Created using **python 3.6.9**, **Django 3.1.3** framework_
 5.In configurations select your virtual environment as a python interpreter
 6.Install postgresql and create a new database and new user(role)
 7.Rename the file **_"RENAME.env"_** to _**".env"**_ and edit settings matching your setting of a database and a user
-8.Use "python3 manage.py makemigrations" and "python3 manage.py migrate"
+8.Use "python3 manage.py makemigrations ads" and "python3 manage.py migrate ads" than "python manage.py makemigrations" and "python3 manage.py migrate"  
 9.Run the project
 

@@ -30,7 +30,7 @@ class RegistrationForm(forms.ModelForm):
         labels = {
             'username': 'Ваш логин',
             'first_name': 'Ваше настоящее имя',
-            'email': 'Ваш адрес электронной почти',
+            'email': 'Ваш адрес электронной почты',
             'phone': 'Ваш номер телефона',
             'password': 'Ваш пароль',
         }
